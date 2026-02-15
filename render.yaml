@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: social-media-content-analyzer
+    runtime: docker
+    plan: free
+    autoDeploy: true
