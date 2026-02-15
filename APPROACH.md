@@ -1,0 +1,7 @@
+The solution is a Flask-based web application designed around a simple processing pipeline: upload, extract, analyze, and present. Users can submit files through either drag-and-drop or a file picker, which improves usability for both desktop and mobile. The backend validates file type and size, then routes extraction by format.
+
+For PDFs, the app uses `pdfplumber` with `layout=True` to preserve spacing and line structure as much as possible, with a fallback to `PyMuPDF` when parsing returns empty text. For scanned/image files, OCR is handled by `pytesseract` and `Pillow`, with explicit error messaging if OCR dependencies are unavailable.
+
+Once text is extracted, a lightweight analyzer computes social-content metrics (word count, hashtags, mentions), estimates an engagement score, and returns actionable suggestions (CTA usage, post length, hashtag quality, reply prompts). This keeps behavior transparent and easy to test without external paid APIs.
+
+The UI includes clear loading states, success/failure feedback, and separate panels for analysis and raw extracted text. The project structure keeps extraction and analysis logic modular to support future extensions such as LLM-powered recommendations or scheduled batch processing.

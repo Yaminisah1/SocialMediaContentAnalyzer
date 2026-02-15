@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Media Content Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+
+  <main class="container">
+    <header class="hero">
+      <p class="eyebrow">Content Intelligence Tool</p>
+      <h1>Social Media Content Analyzer</h1>
+      <p class="subtitle">
+        Upload a PDF or scanned image, extract its text, and receive engagement-focused suggestions instantly.
+      </p>
+    </header>
+
+    <section class="panel upload-panel">
+      <div id="drop-zone" class="drop-zone" aria-label="File upload area">
+        <p class="drop-title">Drop PDF or image here</p>
+        <p class="drop-caption">Supports: PDF, PNG, JPG, JPEG, TIFF, BMP, WEBP</p>
+        <div class="actions-row">
+          <label for="file-input" class="button">Choose File</label>
+          <button id="analyze-btn" class="primary-btn" disabled>Analyze Content</button>
+        </div>
+        <input id="file-input" type="file" accept=".pdf,.png,.jpg,.jpeg,.tiff,.bmp,.webp" hidden />
+        <p id="selected-file" class="selected-file">No file selected</p>
+      </div>
+
+      <div id="status" class="status" aria-live="polite"></div>
+      <div id="loading" class="loading hidden" aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Extracting and analyzing content...</p>
+      </div>
+    </section>
+
+    <section id="results" class="results hidden">
+      <article class="panel analysis-panel">
+        <div class="score-wrap">
+          <div class="score-ring">
+            <span id="score" class="score-value">0</span>
+            <span class="score-total">/100</span>
+          </div>
+          <div>
+            <p class="small-label">Engagement Score</p>
+            <h2 id="summary">Waiting for analysis</h2>
+            <p id="source-meta" class="meta-text"></p>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <p>Words</p>
+            <strong id="words">0</strong>
+          </div>
+          <div class="metric-card">
+            <p>Hashtags</p>
+            <strong id="hashtags">0</strong>
+          </div>
+          <div class="metric-card">
+            <p>Mentions</p>
+            <strong id="mentions">0</strong>
+          </div>
+        </div>
+
+        <h3>Suggestions</h3>
+        <ul id="suggestions" class="suggestions-list"></ul>
+      </article>
+
+      <article class="panel text-panel">
+        <div class="text-panel-header">
+          <h3>Extracted Text</h3>
+          <button id="copy-btn" class="ghost-btn" type="button">Copy Text</button>
+        </div>
+        <pre id="extracted-text"></pre>
+      </article>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
