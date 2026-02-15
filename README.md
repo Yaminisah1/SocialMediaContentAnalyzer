@@ -2,6 +2,8 @@
 
 A Flask web app that accepts PDF or image uploads, extracts text, and generates engagement suggestions for social media content.
 
+Deployed Link: https://socialmediacontentanalyzer-yrf7.onrender.com/
+
 ## Features
 - PDF upload and parsing with formatting-preserving extraction (`pdfplumber` with fallback to `PyMuPDF`)
 - Image upload and OCR text extraction (`pytesseract` + `Pillow`)
